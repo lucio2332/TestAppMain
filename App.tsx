@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, SafeAreaView, Text } from 'react-native';
-import { MainTabStyles, SignUpStyles } from './Styles'; // Import styles
+import { View, Text } from 'react-native';
+import { SignUpStyles } from './Styles'; // Import SignUpStyles
+import { MainTabStyles } from './Styles'; // Import MainTabStyles
 
 import SignUp from './Tabs/SignUp';
 import MainTab from './Tabs/MainTab';
@@ -10,19 +11,16 @@ export default function App() {
   const [selectedTab, setSelectedTab] = useState(1); // Default is SignUp
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        {/* Conditionally render the selected tab */}
-        {selectedTab === 0 ? (
-          <View style={MainTabStyles.container}>
-            <MainTab />
-          </View>
-        ) : (
-          <View style={SignUpStyles.container}>
-            <SignUp />
-          </View>
-        )}
-      </View>
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      {selectedTab === 0 ? (
+        <View style={MainTabStyles.container}>
+          <MainTab />
+        </View>
+      ) : (
+        <View style={SignUpStyles.container}>
+          <SignUp />
+        </View>
+      )}
+    </View>
   );
 }
