@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, SafeAreaView, Text } from 'react-native';
+import { MainTabStyles, SignUpStyles } from './Styles'; // Import styles
+
+import SignUp from './Tabs/SignUp';
+import MainTab from './Tabs/MainTab';
 
 export default function App() {
+  // State to track which tab is selected (0 = Main, 1 = SignUp)
+  const [selectedTab, setSelectedTab] = useState(1); // Default is SignUp
+
   return (
-    <View style={styles.container}>
-      <Text>Running</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        {/* Conditionally render the selected tab */}
+        {selectedTab === 0 ? (
+          <View style={MainTabStyles.container}>
+            <MainTab />
+          </View>
+        ) : (
+          <View style={SignUpStyles.container}>
+            <SignUp />
+          </View>
+        )}
+      </View>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
